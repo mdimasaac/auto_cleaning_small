@@ -140,11 +140,20 @@ def main():
 
             convert = st.selectbox("Convert to:", ["Text","Number","Date"])
             if convert == "Text":
-                st.session_state.df[col] = st.session_state.df[col].astype(object)
+                try:
+                    st.session_state.df[col] = st.session_state.df[col].astype(object)
+                except:
+                    st.error("Cannot convert.")
             elif convert == "Number":
-                st.session_state.df[col] = st.session_state.df[col].astype(np.number)
+                try:
+                    st.session_state.df[col] = st.session_state.df[col].astype(np.number)
+                except:
+                    st.error("Cannot convert.")
             elif convert == "Date":
-                st.session_state.df[col] = pd.to_datetime(st.session_state.df[col])
+                try:
+                    st.session_state.df[col] = pd.to_datetime(st.session_state.df[col])
+                except:
+                    st.error("Cannot convert.")
 
             measure = st.selectbox("Check Measures:", ["Mean","Mode","Median","Min","Max"])
             if measure == ("Mean"):
