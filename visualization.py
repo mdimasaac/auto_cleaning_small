@@ -32,6 +32,7 @@ def visualization():
             except:
                 grouped = df.groupby(colx).count()
                 st.write("aggfunc: [count]")
+            grouped = grouped.sort_index()
             x = grouped.index.tolist()
         else:
             x = df[colx].values.tolist()
